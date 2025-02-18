@@ -10,6 +10,11 @@ public class mathiasPlayer extends Player {
      *
      * @param name The name of the player.
      */
+
+     private HandRanks handRank;
+    private int minBet;
+    private int currentBet;
+    private int bank;
     public mathiasPlayer(String name) {
         super(name);
     }
@@ -26,6 +31,7 @@ public class mathiasPlayer extends Player {
 
         System.out.println("This is all the info form the Gamestate object");
         printExampleStateInformation();
+        minBet = getGameState().getTableMinBet();
 
 
         if(shouldFold()) {
@@ -38,7 +44,7 @@ public class mathiasPlayer extends Player {
             call();
         }
         else if(shouldRaise()) {
-            raise(getGameState().getTableMinBet());
+            raise(minBet * 2);
         }
         else if(shouldAllIn()) {
             allIn();
@@ -47,15 +53,13 @@ public class mathiasPlayer extends Player {
 
     @Override
     protected boolean shouldFold() {
-        return false;
+        return evaluatePlayerHand().getValue() < HandRanks.PAIR.getValue()
+                && getGameState().isActiveBet();
     }
 
     @Override
     protected boolean shouldCheck() {
-//        if(!getGameState().isActiveBet()) {
-//            return true;
-//        }
-        return false;
+       return !getGameState().isActiveBet();
  }
 
     @Override
