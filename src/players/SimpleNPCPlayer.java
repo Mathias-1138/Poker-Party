@@ -3,7 +3,7 @@ package players;
 import game.HandRanks;
 import game.Player;
 
-public class SimpleNPCPlayer extends Player {
+public class  SimpleNPCPlayer extends Player {
 
     public SimpleNPCPlayer(String name) {
         super(name);
@@ -40,6 +40,7 @@ public class SimpleNPCPlayer extends Player {
     protected boolean shouldCall() {
         // Call only if the bet is very small compared to the bank, making it less likely to call on larger bets
         return getGameState().isActiveBet() && getGameState().getTableBet() < getBank() * 0.03;
+        
     }
 
     @Override
