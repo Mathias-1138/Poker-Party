@@ -64,20 +64,23 @@ public class mathiasPlayer extends Player {
 
     @Override
     protected boolean shouldCall() {
-        return false;
+        handRank = evaluatePlayerHand();
+        return handRank.getValue() >= HandRanks.PAIR.getValue() &&
+                handRank.getValue() < HandRanks.THREE_OF_A_KIND.getValue();
     }
 
     @Override
     protected boolean shouldRaise() {
-        if(getGameState().isActiveBet()) {
-            if(getBank() > getGameState().getTableBet() * 2)
-            return true;
-        }
-        return false;
+        HandRanks handRank = evaluatePlayerHand();
+        currentBet = getGameState().getTableBet();
+        bank = getBank();
+        return handRank.getValue() >= HandRanks.THREE_OF_A_KIND.getValue()
+                && bank > currentBet * 3;
     }
 
     @Override
     protected boolean shouldAllIn() {
-        return false;
+        handRank = evaluatePlayerHand();
+        return handRank.getValue() >= HandRanks.FOUR_OF_A_KIND.getValue();
     }
 }
