@@ -21,16 +21,11 @@ public class mathiasPlayer extends Player {
 
     @Override
     protected void takePlayerTurn() {
-        System.out.println("I have a " + evaluatePlayerHand());
 
-        if(evaluatePlayerHand().getValue() > HandRanks.HIGH_CARD.getValue()) {
-            System.out.println(("I have a hand greater than a high card"));
-        }else {
-            System.out.println("I have a high card");
-        }
 
-        System.out.println("This is all the info form the Gamestate object");
-        printExampleStateInformation();
+
+
+
         minBet = getGameState().getTableMinBet();
 
 

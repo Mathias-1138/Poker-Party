@@ -41,6 +41,7 @@ public class AddPlayers {
         playersInGame.add(new ConservativeNPCPlayer("Conservative_02"));
 
         playersInGame.add(new mathiasPlayer("Mathias_01"));
+        playersInGame.add(new mathiasPlayer("Mathias_02"));
     }
 
     /**
